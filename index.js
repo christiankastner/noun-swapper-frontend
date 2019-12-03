@@ -8,44 +8,54 @@ document.addEventListener('DOMContentLoaded', function() {
             appendPoem(json[i], div);
          }
       });
-
-   const poemForm = document.getElementById('new_poem');
-   poemForm.addEventListener('submit', event => {
-      event.preventDefault();
-      fetch(POEMS_URL, {
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-         },
-         body: JSON.stringify({
-            content: event.target[0].value,
-            modified_content: replaceNouns(event.target[0].value),
-         }),
-      })
-         .then(res => res.json())
-         .then(json => {
-            appendPoem(json, div);
-         });
-      let poemArea = document.getElementById('poem_area');
-      poemArea.value = '';
-   });
-
-   function replaceNouns(string) {
-      input = new RiString(string);
-      const words = input.words();
-      const speech = input.pos();
-      let output = '';
-      for (let i = 0; i < speech.length; i++) {
-         if (/nn/.test(speech[i])) {
-            output += RiTa.randomWord('nn') + ' ';
-         } else {
-            output += words[i] + ' ';
-         }
-      }
-      return output;
-   }
+   // const poemForm = document.getElementById('new_poem');
+   // poemForm.addEventListener('submit', postPoem(e));
+   const poemBtn = document.getElementById('createPoemBtn');
+   poemBtn.addEventListener('click', clearDOM);
 });
+
+function clearDOM() {
+   const pageContent = document.getElementById('pageContent');
+   while (pageContent.firstChild) {
+      pageContent.removeChild(pageContent.firstChild);
+   }
+}
+
+function postPoem(e) {
+   event.preventDefault();
+   fetch(POEMS_URL, {
+      method: 'POST',
+      headers: {
+         'Content-Type': 'application/json',
+         Accept: 'application/json',
+      },
+      body: JSON.stringify({
+         content: event.target[0].value,
+         modified_content: replaceNouns(event.target[0].value),
+      }),
+   })
+      .then(res => res.json())
+      .then(json => {
+         appendPoem(json, div);
+      });
+   let poemArea = document.getElementById('poem_area');
+   poemArea.value = '';
+}
+
+function replaceNouns(string) {
+   input = new RiString(string);
+   const words = input.words();
+   const speech = input.pos();
+   let output = '';
+   for (let i = 0; i < speech.length; i++) {
+      if (/nn/.test(speech[i])) {
+         output += RiTa.randomWord('nn') + ' ';
+      } else {
+         output += words[i] + ' ';
+      }
+   }
+   return output;
+}
 
 function appendPoem(json, node) {
    let pOriginal = document.createElement('p');
@@ -55,9 +65,9 @@ function appendPoem(json, node) {
    node.appendChild(pOriginal);
    node.appendChild(pModified);
 
-   document.querySelector('button').addEventListener('click', function() {
-      // let voicelist = responsiveVoice.getVoices()
-      //pick a random voice from voice list and then plug it into speak function
-      responsiveVoice.speak('Hello Team!', 'UK English Male');
-   });
+   // document.querySelector('button').addEventListener('click', function() {
+   //    // let voicelist = responsiveVoice.getVoices()
+   //    //pick a random voice from voice list and then plug it into speak function
+   //    responsiveVoice.speak('Hello Team!', 'UK English Male');
+   // });
 }
