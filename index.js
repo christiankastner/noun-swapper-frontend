@@ -167,9 +167,19 @@ function redoPoem(poem){
     body: JSON.stringify({
       modified_content: modifiedPoem
     })
-  })
     .then(res => res.json())
     .then(clearDOM())
     .then(json => renderConfirmPage(json, div));
+}
+         
+function createReadButton() {
+  const button = document.createElement("button")
+  button.textContent = "Read Me"
+  button.addEventListener("click", (event) => {
+    let text = event.target.parentNode.childNodes[0].textContent.toString()
+    // rs = new RiString(event.target.parentNode.childNodes[0].textContent)
+    // console.log(rs.wordAt(3))
+    PoemReader.readPoem(text)
+  })
 }
 
