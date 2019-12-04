@@ -47,6 +47,8 @@ function createInput(labelText, poemForm, id) {
    poemForm.appendChild(label);
 }
 
+function createLucyButton() {}
+
 function postPoem(event) {
    event.preventDefault();
    fetch(POEMS_URL, {
