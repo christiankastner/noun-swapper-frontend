@@ -116,11 +116,15 @@ function appendPoem(json, node) {
   //    responsiveVoice.speak('Hello Team!', 'UK English Male');
   // });
 }
+
 function createReadButton() {
   const button = document.createElement("button")
   button.textContent = "Read Me"
   button.addEventListener("click", (event) => {
-    PoemReader.readPoem(event.target.parentNode.childNodes[0].textContent)
+    let text = event.target.parentNode.childNodes[0].textContent.toString()
+    // rs = new RiString(event.target.parentNode.childNodes[0].textContent)
+    // console.log(rs.wordAt(3))
+    PoemReader.readPoem(text)
   })
   return button
 }
