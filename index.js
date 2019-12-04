@@ -93,17 +93,34 @@ function replaceNouns(string) {
 function appendPoem(json, node) {
   let pageContent = document.getElementById("pageContent");
   pageContent.appendChild(node);
+  const originalDiv = document.createElement("div")
+  const modifiedDiv = document.createElement("div")
   let pOriginal = document.createElement("p");
   let pModified = document.createElement("p");
   pOriginal.textContent = json.content;
   pModified.textContent = json.modified_content;
+  originalDiv.appendChild(pOriginal)
+  modifiedDiv.appendChild(pModified)
+  const readButton1 = createReadButton()
+  const readButton2 = createReadButton()
+  originalDiv.append(readButton1)
+  modifiedDiv.append(readButton2)
   console.log(node);
-  node.appendChild(pOriginal);
-  node.appendChild(pModified);
+  node.appendChild(originalDiv);
+  node.appendChild(modifiedDiv);
+
 
   // document.querySelector('button').addEventListener('click', function() {
   //    // let voicelist = responsiveVoice.getVoices()
   //    //pick a random voice from voice list and then plug it into speak function
   //    responsiveVoice.speak('Hello Team!', 'UK English Male');
   // });
+}
+function createReadButton() {
+  const button = document.createElement("button")
+  button.textContent = "Read Me"
+  button.addEventListener("click", (event) => {
+    PoemReader.readPoem(event.target.parentNode.childNodes[0].textContent)
+  })
+  return button
 }
