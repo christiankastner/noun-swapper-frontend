@@ -18,7 +18,7 @@ function fetchPoems() {
 }
 
 function clearDOM() {
-  const pageContent = document.getElementById("pageContent");
+  const pageContent = getPageContentDiv();
   while (pageContent.firstChild) {
     pageContent.removeChild(pageContent.firstChild);
   }
@@ -30,12 +30,17 @@ function createPoemsDiv() {
   return poemsDiv;
 }
 
+function getPageContentDiv() {
+  let pageContent = document.getElementById("pageContent");
+  return pageContent;
+}
+
 function createPoem() {
   clearDOM();
   const newPoem = document.createElement("h2");
   const poemForm = document.createElement("form");
   const submitBtn = document.createElement("button");
-  const pageContent = document.getElementById("pageContent");
+  const pageContent = getPageContentDiv();
   submitBtn.textContent = "Submit";
   newPoem.textContent = "Create Poem";
   pageContent.appendChild(newPoem);
@@ -76,7 +81,7 @@ function postPoem(event) {
   })
     .then(res => res.json())
     .then(clearDOM())
-    .then(json => appendPoem(json, div));
+    .then(json => renderConfirmPage(json, div));
 }
 
 function replaceNouns(string) {
@@ -95,10 +100,11 @@ function replaceNouns(string) {
 }
 
 function appendPoem(json, node) {
-  let pageContent = document.getElementById("pageContent");
+  let pageContent = getPageContentDiv();
   pageContent.appendChild(node);
   const originalDiv = document.createElement("div");
   const modifiedDiv = document.createElement("div");
+  modifiedDiv.id = "modPoemDiv";
   let pOriginal = document.createElement("p");
   let pModified = document.createElement("p");
   pOriginal.textContent = json.content;
@@ -109,7 +115,6 @@ function appendPoem(json, node) {
   const readButton2 = createReadButton();
   originalDiv.append(readButton1);
   modifiedDiv.append(readButton2);
-  console.log(node);
   node.appendChild(originalDiv);
   node.appendChild(modifiedDiv);
 }
@@ -121,4 +126,22 @@ function createReadButton() {
     PoemReader.readPoem(event.target.parentNode.childNodes[0].textContent);
   });
   return button;
+}
+
+function renderConfirmPage(json, node) {
+  const pageContent = getPageContentDiv();
+  const confirmHeader = document.createElement("h2");
+  confirmHeader.innerText =
+    "Here's your chance to make your peom as krazy as can be!";
+  const instructionText = document.createElement("h3");
+  instructionText.innerText = "Try click the 'redo' button below to find the kraziest nouns for your poem.";
+  pageContent.appendChild(confirmHeader);
+  pageContent.appendChild(instructionText);
+  appendPoem(json, node);
+  const modifiedPoem = document.getElementById("modPoemDiv");
+  const redoButton = document.createElement("button");
+  modifiedPoem.appendChild(redoButton);
+  redoButton.id = "redoButton";
+  redoButton.innerText = "Redo";
+  redoButton.addEventListener("click", () => console.log("hello"));
 }
