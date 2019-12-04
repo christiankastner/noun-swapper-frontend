@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
    const poemBtn = document.getElementById('createPoemBtn');
    poemBtn.addEventListener('click', createPoem);
 });
+const swapper = new NounSwapper
 
 function fetchPoems() {
    const div = createPoemsDiv();
@@ -79,7 +80,7 @@ function postPoem(event) {
       body: JSON.stringify({
          title: event.target.title.value,
          content: event.target.content.value,
-         modified_content: replaceNouns(event.target.content.value),
+         modified_content: swapper.replaceNouns(event.target.content.value),
          username: event.target.username.value,
       }),
    })
@@ -164,7 +165,7 @@ function renderConfirmPage(json, node) {
 }
 
 function redoPoem(poem) {
-   const modifiedPoem = replaceNouns(poem.innerText);
+   const modifiedPoem = swapper.replaceNouns(poem.innerText);
    const id = poem.id;
    const div = createPoemsDiv();
    fetch(`http://localhost:3000/poems/${id}`, {
