@@ -125,6 +125,7 @@ function createReadButton() {
   const button = document.createElement("button");
   button.textContent = "Read Me";
   button.addEventListener("click", event => {
+    PoemReader.killSound()
     PoemReader.readPoem(event.target.parentNode.childNodes[0].textContent);
   });
   return button;

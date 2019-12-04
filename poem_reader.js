@@ -2,25 +2,32 @@ class PoemReader {
     constructor(){
     }
 
-    static readPoem(text, sound = true, ) {
-        const lines = PoemReader.splitLines(text)
+    static readPoem(text, sound = false) {
+        if (sound === true) {
+            const lines = PoemReader.splitLines(text)
 
-        let audio = document.getElementById("start-bongos")
-        const pause = (audio.duration - 1)*1000
-        audio.play()
-        audio.onend = PoemReader.readLines(lines, pause)
+            let audio = document.getElementById("start-bongos")
+            const pause = (audio.duration - 1)*1000
+            audio.play()
+            PoemReader.readLines(lines, pause, true)
+        } else {
+            PoemReader.readLines([text])
+        }
     }
 
-    static readLines(text, pause = 0, sound = true) {
+    static readLines(text, pause = 0, sound = false) {
         if (text.length === 0){
             return 0
         }
-        const cubic = 0.04*(text[0].split(" ").length - 3)**3 + 1
+        const ranNum = Math.ceil(Math.random() * 2)
+        let cubic 
+        sound ? cubic = 0.04*(text[0].split(" ").length - 3)**3 + 1 : cubic = 1
         PoemReader.interval = setTimeout(() => {
             responsiveVoice.speak(text[0], "US English Female", {onend: () => {
-                const ranNum = Math.ceil(Math.random() * 2)
-                document.getElementById(`end-bongos-${ranNum}`).play();
-                this.readLines(text.slice(1))
+                if (sound === true) {
+                    document.getElementById(`end-bongos-${ranNum}`).play();
+                    this.readLines(text.slice(1))
+                }
             }, rate: cubic})
         }, pause);
     }
