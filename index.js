@@ -22,30 +22,32 @@ function clearDOM() {
 function createPoem() {
    clearDOM();
    const newPoem = document.createElement('h2');
-   const pageContent = document.getElementById('pageContent');
    const poemForm = document.createElement('form');
+   const submitBtn = document.createElement('button');
+   const pageContent = document.getElementById('pageContent');
+   submitBtn.textContent = 'Submit';
    newPoem.textContent = 'Create Poem';
    pageContent.appendChild(newPoem);
-   createInput('Title');
-   createInput('Content');
-   createInput('Username');
+   createInput('Title', poemForm, 'title');
+   createInput('Content', poemForm, 'content');
+   createInput('Username', poemForm, 'username');
+   poemForm.appendChild(submitBtn);
+   pageContent.appendChild(poemForm);
    poemForm.addEventListener('submit', event => {
       postPoem(event);
    });
 }
 
-function createInput(labelText) {
-   const poemForm = document.createElement('form');
+function createInput(labelText, poemForm, id) {
    const input = document.createElement('input');
    const label = document.createElement('label');
-   const pageContent = document.getElementById('pageContent');
+   input.id = id;
    label.textContent = labelText;
    label.appendChild(input);
    poemForm.appendChild(label);
-   pageContent.appendChild(poemForm);
 }
 
-function postPoem(e) {
+function postPoem(event) {
    event.preventDefault();
    fetch(POEMS_URL, {
       method: 'POST',
@@ -54,8 +56,10 @@ function postPoem(e) {
          Accept: 'application/json',
       },
       body: JSON.stringify({
-         content: event.target[0].value,
-         modified_content: replaceNouns(event.target[0].value),
+         title: event.target.title.value,
+         content: event.target.content.value,
+         modified_content: replaceNouns(event.target.content.value),
+         username: event.target.username.value,
       }),
    })
       .then(res => res.json())
