@@ -15,7 +15,7 @@ class PoemReader {
         if (text.length === 0){
             return 0
         }
-        const cubic = 0.03*(text[0].split(" ").length - 3)**3 + 1
+        const cubic = 0.04*(text[0].split(" ").length - 3)**3 + 1
         PoemReader.interval = setTimeout(() => {
             responsiveVoice.speak(text[0], "US English Female", {onend: () => {
                 const ranNum = Math.ceil(Math.random() * 2)
