@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-   const POEMS_URL = 'http://localhost:3000/poems';
    const div = document.getElementById('poems_div');
    fetch('http://localhost:3000/poems')
       .then(res => res.json())
@@ -48,8 +47,9 @@ function createInput(labelText, poemForm, id) {
 }
 
 function postPoem(event) {
+   const div = document.getElementById('poems_div');
    event.preventDefault();
-   fetch(POEMS_URL, {
+   fetch('http://localhost:3000/poems', {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
@@ -64,10 +64,9 @@ function postPoem(event) {
    })
       .then(res => res.json())
       .then(json => {
+         console.log(json);
          appendPoem(json, div);
       });
-   let poemArea = document.getElementById('poem_area');
-   poemArea.value = '';
 }
 
 function replaceNouns(string) {
@@ -90,6 +89,7 @@ function appendPoem(json, node) {
    let pModified = document.createElement('p');
    pOriginal.textContent = json.content;
    pModified.textContent = json.modified_content;
+   console.log(node);
    node.appendChild(pOriginal);
    node.appendChild(pModified);
 
