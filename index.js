@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
+  fetchPoems();
+  const homeButton = document.getElementById("homeButton");
+  homeButton.addEventListener("click", () => {clearDOM(); fetchPoems();});
+  const poemBtn = document.getElementById("createPoemBtn");
+  poemBtn.addEventListener("click", createPoem);
+});
+
+function fetchPoems() {
   const div = createPoemsDiv();
   fetch("http://localhost:3000/poems")
     .then(res => res.json())
@@ -7,12 +15,10 @@ document.addEventListener("DOMContentLoaded", function() {
         appendPoem(json[i], div);
       }
     });
-  const poemBtn = document.getElementById("createPoemBtn");
-  poemBtn.addEventListener("click", createPoem);
-});
+}
 
 function clearDOM() {
-  const pageContent = document.getElementById("pageContent");
+  const pageContent = getPageContentDiv();
   while (pageContent.firstChild) {
     pageContent.removeChild(pageContent.firstChild);
   }
@@ -24,12 +30,17 @@ function createPoemsDiv() {
   return poemsDiv;
 }
 
+function getPageContentDiv() {
+  let pageContent = document.getElementById("pageContent");
+  return pageContent;
+}
+
 function createPoem() {
   clearDOM();
   const newPoem = document.createElement("h2");
   const poemForm = document.createElement("form");
   const submitBtn = document.createElement("button");
-  const pageContent = document.getElementById("pageContent");
+  const pageContent = getPageContentDiv();
   submitBtn.textContent = "Submit";
   newPoem.textContent = "Create Poem";
   pageContent.appendChild(newPoem);
@@ -69,10 +80,8 @@ function postPoem(event) {
     })
   })
     .then(res => res.json())
-    .then(json => () => {
-      console.log(json);
-      appendPoem(json, div);
-    });
+    .then(clearDOM())
+    .then(json => renderConfirmPage(json, div));
 }
 
 function replaceNouns(string) {
@@ -91,32 +100,78 @@ function replaceNouns(string) {
 }
 
 function appendPoem(json, node) {
-  let pageContent = document.getElementById("pageContent");
+  let pageContent = getPageContentDiv();
   pageContent.appendChild(node);
-  const originalDiv = document.createElement("div")
-  const modifiedDiv = document.createElement("div")
+  const originalDiv = document.createElement("div");
+  const modifiedDiv = document.createElement("div");
+  modifiedDiv.id = "modPoemDiv";
   let pOriginal = document.createElement("p");
   let pModified = document.createElement("p");
   pOriginal.textContent = json.content;
   pModified.textContent = json.modified_content;
-  originalDiv.appendChild(pOriginal)
-  modifiedDiv.appendChild(pModified)
-  const readButton1 = createReadButton()
-  const readButton2 = createReadButton()
-  originalDiv.append(readButton1)
-  modifiedDiv.append(readButton2)
-  console.log(node);
+  pModified.id = json.id;
+  pModified.className = "modifiedPoem";
+  originalDiv.appendChild(pOriginal);
+  modifiedDiv.appendChild(pModified);
+  const readButton1 = createReadButton();
+  const readButton2 = createReadButton();
+  originalDiv.append(readButton1);
+  modifiedDiv.append(readButton2);
   node.appendChild(originalDiv);
   node.appendChild(modifiedDiv);
-
-
-  // document.querySelector('button').addEventListener('click', function() {
-  //    // let voicelist = responsiveVoice.getVoices()
-  //    //pick a random voice from voice list and then plug it into speak function
-  //    responsiveVoice.speak('Hello Team!', 'UK English Male');
-  // });
 }
 
+function createReadButton() {
+  const button = document.createElement("button");
+  button.textContent = "Read Me";
+  button.addEventListener("click", event => {
+    PoemReader.readPoem(event.target.parentNode.childNodes[0].textContent);
+  });
+  return button;
+}
+
+function renderConfirmPage(json, node) {
+  const pageContent = getPageContentDiv();
+  const confirmHeader = document.createElement("h2");
+  confirmHeader.innerText =
+    "Here's your chance to make your poem as krazy as can be!";
+  const instructionText = document.createElement("h3");
+  instructionText.innerText = "Try click the 'redo' button below to find the kraziest nouns for your poem.";
+  pageContent.appendChild(confirmHeader);
+  pageContent.appendChild(instructionText);
+  appendPoem(json, node);
+  const modifiedPoemDiv = document.getElementById("modPoemDiv");
+  const redoButton = document.createElement("button");
+  modifiedPoemDiv.appendChild(redoButton);
+  const modifiedPoem = document.querySelector(".modifiedPoem");
+  redoButton.id = "redoButton";
+  redoButton.innerText = "Redo";
+  redoButton.addEventListener("click", () => redoPoem(modifiedPoem));
+  const saveButton = document.createElement("button");
+  saveButton.id = "saveButton";
+  saveButton.innerText = "Save";
+  saveButton.addEventListener("click", () => {clearDOM(); fetchPoems();});
+  pageContent.appendChild(saveButton);
+}
+
+function redoPoem(poem){
+   const modifiedPoem = replaceNouns(poem.innerText);
+   const id = poem.id;
+   const div = createPoemsDiv();
+   fetch(`http://localhost:3000/poems/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+      modified_content: modifiedPoem
+    })
+    .then(res => res.json())
+    .then(clearDOM())
+    .then(json => renderConfirmPage(json, div));
+}
+         
 function createReadButton() {
   const button = document.createElement("button")
   button.textContent = "Read Me"
@@ -126,5 +181,5 @@ function createReadButton() {
     // console.log(rs.wordAt(3))
     PoemReader.readPoem(text)
   })
-  return button
 }
+
