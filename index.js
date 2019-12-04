@@ -170,6 +170,7 @@ function redoPoem(poem){
     .then(res => res.json())
     .then(clearDOM())
     .then(json => renderConfirmPage(json, div));
+   });
 }
          
 function createReadButton() {
