@@ -104,8 +104,13 @@ function replaceNouns(string) {
 }
 
 function appendPoem(json, node) {
+   console.log(json);
    let pageContent = getPageContentDiv();
    pageContent.appendChild(node);
+   const poemTitle = document.createElement('h2');
+   const username = document.createElement('p');
+   username.textContent = `By ${json.user.username}`;
+   poemTitle.textContent = json.title;
    const originalDiv = document.createElement('div');
    const modifiedDiv = document.createElement('div');
    modifiedDiv.id = 'modPoemDiv';
@@ -121,6 +126,8 @@ function appendPoem(json, node) {
    const readButton2 = createReadButton();
    originalDiv.append(readButton1);
    modifiedDiv.append(readButton2);
+   node.appendChild(poemTitle);
+   node.appendChild(username);
    node.appendChild(originalDiv);
    node.appendChild(modifiedDiv);
 }
