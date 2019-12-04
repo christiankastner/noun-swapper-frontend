@@ -144,4 +144,9 @@ function renderConfirmPage(json, node) {
   redoButton.id = "redoButton";
   redoButton.innerText = "Redo";
   redoButton.addEventListener("click", () => console.log("hello"));
+  const saveButton = document.createElement("button");
+  saveButton.id = "saveButton";
+  saveButton.innerText = "Save";
+  saveButton.addEventListener("click", () => {clearDOM(); fetchPoems();});
+  pageContent.appendChild(saveButton);
 }
