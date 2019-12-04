@@ -1,6 +1,6 @@
 class PoemReader {
    constructor() {}
-   static readPoem(text, sound = false) {
+   static readPoem(text, sound = true) {
       let voice = document.getElementById('voicesDropdown').value;
       if (sound === true) {
          const lines = PoemReader.splitLines(text);
@@ -20,15 +20,18 @@ class PoemReader {
       }
       const ranNum = Math.ceil(Math.random() * 2);
       let cubic;
-      sound
-         ? (cubic = 0.04 * (text[0].split(' ').length - 3) ** 3 + 1)
-         : (cubic = 1);
+         if (sound === true) {
+             cubic = 0.04 * (text[0].split(' ').length - 3) ** 3 + 1;
+         } else {
+            cubic = 1;
+         }
+         
       PoemReader.interval = setTimeout(() => {
          responsiveVoice.speak(text[0], voice, {
             onend: () => {
                if (sound === true) {
                   document.getElementById(`end-bongos-${ranNum}`).play();
-                  this.readLines(text.slice(1));
+                  this.readLines(text.slice(1), 0, true, voice);
                }
             },
             rate: cubic,
