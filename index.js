@@ -107,13 +107,8 @@ function appendPoem(json, node) {
    modifiedDiv.append(readButton2);
    node.appendChild(originalDiv);
    node.appendChild(modifiedDiv);
-
-   // document.querySelector('button').addEventListener('click', function() {
-   //    // let voicelist = responsiveVoice.getVoices()
-   //    //pick a random voice from voice list and then plug it into speak function
-   //    responsiveVoice.speak('Hello Team!', 'UK English Male');
-   // });
 }
+
 function createReadButton() {
    const button = document.createElement('button');
    button.textContent = 'Read Me';

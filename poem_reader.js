@@ -7,7 +7,6 @@ class PoemReader {
       const pause = (audio.duration - 1) * 1000;
       audio.play();
       let voice = document.getElementById('voicesDropdown').value;
-      console.log(voice);
       PoemReader.readLines(lines, pause, voice);
    }
 
