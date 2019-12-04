@@ -89,6 +89,7 @@ function appendPoem(json, node) {
    let pModified = document.createElement('p');
    pOriginal.textContent = json.content;
    pModified.textContent = json.modified_content;
+   console.log(node);
    node.appendChild(pOriginal);
    node.appendChild(pModified);
 
