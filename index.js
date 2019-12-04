@@ -8,10 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
             appendPoem(json[i], div);
          }
       });
-   // const poemForm = document.getElementById('new_poem');
-   // poemForm.addEventListener('submit', postPoem(e));
    const poemBtn = document.getElementById('createPoemBtn');
-   poemBtn.addEventListener('click', clearDOM);
+   poemBtn.addEventListener('click', createPoem);
 });
 
 function clearDOM() {
@@ -19,6 +17,32 @@ function clearDOM() {
    while (pageContent.firstChild) {
       pageContent.removeChild(pageContent.firstChild);
    }
+}
+
+function createPoem() {
+   clearDOM();
+   const newPoem = document.createElement('h2');
+   const pageContent = document.getElementById('pageContent');
+   const poemForm = document.createElement('form');
+   newPoem.textContent = 'Create Poem';
+   pageContent.appendChild(newPoem);
+   createInput('Title');
+   createInput('Content');
+   createInput('Username');
+   poemForm.addEventListener('submit', event => {
+      postPoem(event);
+   });
+}
+
+function createInput(labelText) {
+   const poemForm = document.createElement('form');
+   const input = document.createElement('input');
+   const label = document.createElement('label');
+   const pageContent = document.getElementById('pageContent');
+   label.textContent = labelText;
+   label.appendChild(input);
+   poemForm.appendChild(label);
+   pageContent.appendChild(poemForm);
 }
 
 function postPoem(e) {
