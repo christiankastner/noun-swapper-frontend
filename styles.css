@@ -1,0 +1,11 @@
+body {
+    background: hotpink;
+}
+
+#navButtons {
+    background: indigo;
+}
+
+#headTitle {
+    display: inline;
+}

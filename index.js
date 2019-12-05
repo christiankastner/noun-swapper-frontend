@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
       clearDOM();
       fetchPoems();
    });
-   const poemBtn = document.getElementById('createPoemBtn');
+   const poemBtn = document.getElementById('createPoemButton');
    poemBtn.addEventListener('click', createPoem);
    const stopSoundButton = document.getElementById('stopSoundButton');
    stopSoundButton.addEventListener('click', PoemReader.killSound);

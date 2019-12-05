@@ -6,12 +6,18 @@
       <script src="https://code.responsivevoice.org/responsivevoice.js?key=uS7jrDEI"></script>
       <script src="index.js"></script>
       <script src="rita-full.js"></script>
+      <link rel="stylesheet" href="styles.css">
    </header>
    <body>
-      <h1>Krazy Poems</h1>
-      <button id="homeButton">Home</button>
-      <button id="createPoemBtn">Create Poem</button>
-      <button id="stopSoundButton">Stop Sound</button>
+      <div id=titleHeader>
+            <h1 id="headTitle">Krazy Poems</h1>
+            <img src="images/bongo-cat-no-bg.png" width="50" height="50">
+      </div>
+      <div id="navButtons">
+         <button id="homeButton" class="navButton">Home</button>
+         <button id="createPoemButton" class="navButton">Create Poem</button>
+         <button id="stopSoundButton" class="navButton">Stop Sound</button>
+      </div>
       <div class="readOptions">
          <div id="dropdownDiv"></div>
          <div id="bongoSelect"><select id="bongoDropdown">
