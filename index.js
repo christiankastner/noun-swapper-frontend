@@ -59,6 +59,7 @@ function createPoem() {
    createInput('Adjectives', poemForm, 'jj', 'checkbox');
    createInput('Nouns', poemForm, 'nn', 'checkbox');
    createInput('Verbs', poemForm, 'vb', 'checkbox');
+   createInput('Adverbs', poemForm, 'rb', 'checkbox');
    createInput('Title', poemForm, 'title', 'text');
    createInput('Content', poemForm, 'content', 'textarea');
    createInput('Username', poemForm, 'username', 'text');
@@ -101,7 +102,10 @@ function postPoem(event) {
       body: JSON.stringify({
          title: event.target.title.value,
          content: event.target.content.value,
-         modified_content: swapper.replace(event.target.content.value),
+         modified_content: swapper.replace(
+            event.target.content.value,
+            isChecked(),
+         ),
          username: event.target.username.value,
       }),
    })
@@ -158,6 +162,10 @@ function renderConfirmPage(json, node) {
       "Try click the 'redo' button below to find the kraziest nouns for your poem.";
    pageContent.appendChild(confirmHeader);
    pageContent.appendChild(instructionText);
+   createInput('Adjectives', pageContent, 'jj', 'checkbox');
+   createInput('Nouns', pageContent, 'nn', 'checkbox');
+   createInput('Verbs', pageContent, 'vb', 'checkbox');
+   createInput('Adverbs', pageContent, 'rb', 'checkbox');
    appendPoem(json, node);
    const modifiedPoemDiv = document.getElementById('modPoemDiv');
    const redoButton = document.createElement('button');
@@ -177,25 +185,25 @@ function renderConfirmPage(json, node) {
 }
 
 function redoPoem(poem) {
-  const modifiedPoem = swapper.replace(poem.innerText);
-  const id = poem.id;
-  const div = createPoemsDiv();
-  fetch(`http://localhost:3000/poems/${id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    },
-    body: JSON.stringify({
-      modified_content: modifiedPoem
-    })
-  })
-    .then(res => res.json())
-    .then(
-      json =>
-        (document.querySelector(".modifiedPoem").textContent =
-          json.modified_content)
-    );
+   const modifiedPoem = swapper.replace(poem.innerText, isChecked());
+   const id = poem.id;
+   const div = createPoemsDiv();
+   fetch(`http://localhost:3000/poems/${id}`, {
+      method: 'PATCH',
+      headers: {
+         'Content-Type': 'application/json',
+         Accept: 'application/json',
+      },
+      body: JSON.stringify({
+         modified_content: modifiedPoem,
+      }),
+   })
+      .then(res => res.json())
+      .then(
+         json =>
+            (document.querySelector('.modifiedPoem').textContent =
+               json.modified_content),
+      );
 }
 
 function createDropDown() {
@@ -215,11 +223,13 @@ function isChecked() {
    const nounInput = document.getElementById('nn');
    const verbInput = document.getElementById('vb');
    const adjInput = document.getElementById('jj');
-   const inputs = [nounInput, verbInput, adjInput];
+   const adverbInput = document.getElementById('rb');
+   const inputs = [nounInput, verbInput, adjInput, adverbInput];
    let checkedBoxes = [];
    for (let i = 0; i < inputs.length; i++) {
       if (inputs[i].checked) {
          checkedBoxes.push(inputs[i].id);
       }
    }
+   return checkedBoxes;
 }
