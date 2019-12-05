@@ -114,7 +114,6 @@ function replaceNouns(string) {
 }
 
 function appendPoem(json, node) {
-  console.log(json);
   let pageContent = getPageContentDiv();
   pageContent.appendChild(node);
   const poemTitle = document.createElement("h2");
