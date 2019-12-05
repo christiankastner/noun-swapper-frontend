@@ -1,4 +1,6 @@
+
 document.addEventListener("DOMContentLoaded", function() {
+  config.speakSelectedText = false
   createDropDown();
   fetchPoems();
   const homeButton = document.getElementById("homeButton");
