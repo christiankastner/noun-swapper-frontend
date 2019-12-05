@@ -1,11 +1,58 @@
 body {
-    background: hotpink;
+    background: #142d63;
 }
 
 #navButtons {
-    background: indigo;
+
+}
+
+#titleHeader {
+    display: inline;
 }
 
 #headTitle {
+    display: inline;
+    color: #142d63;
+}
+
+p {
+    color: white;
+}
+
+h2 {
+    color: #a828ed;
+    display: inline;
+}
+
+#noScroll {
+    position: fixed;
+    background: #7093e0;
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-bottom: 10px;
+    padding-left: 20px;
+}
+
+#pageContent {
+    margin-top: 140px;
+    text-align: center;
+}
+
+.dropdownLabels {
+    color: #c6eb34;
+    display: inline;
+}
+
+#dropdownDiv {
+    display: inline;
+    padding-right: 2em;
+}
+
+#bongoSelect {
     display: inline;
 }

@@ -144,7 +144,7 @@ function appendPoem(json, node) {
 
 function createReadButton() {
    const button = document.createElement('button');
-   button.textContent = 'Read Me';
+   button.textContent = 'Read Me Out Loud';
    button.addEventListener('click', event => {
       PoemReader.killSound();
       PoemReader.readPoem(event.target.parentNode.childNodes[0].textContent);
