@@ -1,5 +1,6 @@
 class PoemReader {
-  constructor() {}
+  constructor() {
+  }
 
   static readPoem(text) {
     let voice = document.getElementById("voicesDropdown").value;
@@ -20,10 +21,9 @@ class PoemReader {
     if (text.length === 0) {
       return 0;
     }
-    const ranNum = Math.ceil(Math.random() * 3);
     let cubic;
     if (sound === "true") {
-      cubic = 0.04 * (text[0].split(" ").length - 3) ** 3 + 1;
+      cubic = 0.03 * (text[0].split(" ").length - 3) ** 3 + 1;
     } else {
       cubic = 1;
     }
@@ -32,7 +32,7 @@ class PoemReader {
       responsiveVoice.speak(text[0], voice, {
         onend: () => {
           if (sound === "true") {
-            document.getElementById(`end-bongos-${ranNum}`).play();
+            this.playFiller()
             this.readLines(text.slice(1), 0, "true", voice);
           }
         },
@@ -61,5 +61,35 @@ class PoemReader {
     audio.currentTime = 0;
     responsiveVoice.cancel();
     clearInterval(PoemReader.interval);
+  }
+
+  static playFiller() {
+    const ranNum = Math.ceil(Math.random() * 5);
+    const bongos = [
+        document.getElementById(`end-bongos-1`),
+        document.getElementById(`end-bongos-2`)
+      ]
+    const snap = document.getElementById(`snaps`)
+    switch (ranNum) {
+        case 1:
+            bongos[0].play()
+        break;
+        case 2:
+            bongos[1].play()
+        break;
+        case 3:
+            bongos[0].play()
+            setTimeout(() => {bongos[0].play()}, 500)
+        break;
+        case 4:
+            snap.play()
+        break;
+        case 5:
+            snap.play()
+            setTimeout(() => {snap.currentTime = 0;}, 400)
+        break;
+    }
+    
+
   }
 }
