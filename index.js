@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+   config.speakSelectedText = false;
    createDropDown();
    fetchPoems();
    const homeButton = document.getElementById('homeButton');
@@ -100,28 +101,13 @@ function postPoem(event) {
       body: JSON.stringify({
          title: event.target.title.value,
          content: event.target.content.value,
-         modified_content: swapper.replaceNouns(event.target.content.value),
+         modified_content: swapper.replace(event.target.content.value),
          username: event.target.username.value,
       }),
    })
       .then(res => res.json())
       .then(clearDOM())
       .then(json => renderConfirmPage(json, div));
-}
-
-function replaceNouns(string) {
-   input = new RiString(string);
-   const words = input.words();
-   const speech = input.pos();
-   let output = '';
-   for (let i = 0; i < speech.length; i++) {
-      if (/nn/.test(speech[i])) {
-         output += RiTa.randomWord('nn') + ' ';
-      } else {
-         output += words[i] + ' ';
-      }
-   }
-   return output;
 }
 
 function appendPoem(json, node) {
@@ -191,22 +177,25 @@ function renderConfirmPage(json, node) {
 }
 
 function redoPoem(poem) {
-   const modifiedPoem = swapper.replaceNouns(poem.innerText);
-   const id = poem.id;
-   const div = createPoemsDiv();
-   fetch(`http://localhost:3000/poems/${id}`, {
-      method: 'PATCH',
-      headers: {
-         'Content-Type': 'application/json',
-         Accept: 'application/json',
-      },
-      body: JSON.stringify({
-         modified_content: modifiedPoem,
-      }),
-   })
-      .then(res => res.json())
-      .then(clearDOM())
-      .then(json => renderConfirmPage(json, div));
+  const modifiedPoem = swapper.replace(poem.innerText);
+  const id = poem.id;
+  const div = createPoemsDiv();
+  fetch(`http://localhost:3000/poems/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+      modified_content: modifiedPoem
+    })
+  })
+    .then(res => res.json())
+    .then(
+      json =>
+        (document.querySelector(".modifiedPoem").textContent =
+          json.modified_content)
+    );
 }
 
 function createDropDown() {
