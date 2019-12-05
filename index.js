@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function() {
   });
   const poemBtn = document.getElementById("createPoemBtn");
   poemBtn.addEventListener("click", createPoem);
+  const stopSoundButton = document.getElementById("stopSoundButton");
+  stopSoundButton.addEventListener("click", PoemReader.killSound);
 });
 const swapper = new NounSwapper();
 
