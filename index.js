@@ -64,6 +64,7 @@ function createPoem() {
    poemForm.appendChild(submitBtn);
    pageContent.appendChild(poemForm);
    poemForm.addEventListener('submit', event => {
+      isChecked();
       postPoem(event);
    });
 }
@@ -219,4 +220,17 @@ function createDropDown() {
       dropdown.appendChild(voiceOption);
    });
    document.getElementById('dropdownDiv').appendChild(dropdown);
+}
+
+function isChecked() {
+   const nounInput = document.getElementById('nn');
+   const verbInput = document.getElementById('vb');
+   const adjInput = document.getElementById('jj');
+   const inputs = [nounInput, verbInput, adjInput];
+   let checkedBoxes = [];
+   for (let i = 0; i < inputs.length; i++) {
+      if (inputs[i].checked) {
+         checkedBoxes.push(inputs[i].id);
+      }
+   }
 }
