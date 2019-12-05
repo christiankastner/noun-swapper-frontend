@@ -1,6 +1,5 @@
-
 document.addEventListener("DOMContentLoaded", function() {
-  config.speakSelectedText = false
+  config.speakSelectedText = false;
   createDropDown();
   fetchPoems();
   const homeButton = document.getElementById("homeButton");
@@ -183,7 +182,11 @@ function redoPoem(poem) {
     })
   })
     .then(res => res.json())
-    .then(json => document.querySelector(".modifiedPoem").textContent = json.modified_content);
+    .then(
+      json =>
+        (document.querySelector(".modifiedPoem").textContent =
+          json.modified_content)
+    );
 }
 
 function createDropDown() {
