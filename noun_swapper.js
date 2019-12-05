@@ -7,7 +7,7 @@ class NounSwapper {
         const words = input.words();
         const speech = input.pos();
         for (let i = 0; i < speech.length; i++) {
-           if (/jj/.test(speech[i])) {
+           if (/nn/.test(speech[i])) {
                 input.replaceWord(i, this.generate(speech[i]))
             } 
         }
