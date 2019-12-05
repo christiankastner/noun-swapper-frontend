@@ -191,22 +191,25 @@ function renderConfirmPage(json, node) {
 }
 
 function redoPoem(poem) {
-   const modifiedPoem = swapper.replaceNouns(poem.innerText);
-   const id = poem.id;
-   const div = createPoemsDiv();
-   fetch(`http://localhost:3000/poems/${id}`, {
-      method: 'PATCH',
-      headers: {
-         'Content-Type': 'application/json',
-         Accept: 'application/json',
-      },
-      body: JSON.stringify({
-         modified_content: modifiedPoem,
-      }),
-   })
-      .then(res => res.json())
-      .then(clearDOM())
-      .then(json => renderConfirmPage(json, div));
+  const modifiedPoem = swapper.replace(poem.innerText);
+  const id = poem.id;
+  const div = createPoemsDiv();
+  fetch(`http://localhost:3000/poems/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+      modified_content: modifiedPoem
+    })
+  })
+    .then(res => res.json())
+    .then(
+      json =>
+        (document.querySelector(".modifiedPoem").textContent =
+          json.modified_content)
+    );
 }
 
 function createDropDown() {
