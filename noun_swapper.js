@@ -17,6 +17,9 @@ class NounSwapper {
     generateNoun() {
         if (this.themeNouns.length === 0) {
             return RiTa.randomWord("nn")
+        } else {
+            const ranNum = Math.floor(Math.random()*this.themeNouns.length)
+            return this.themeNouns[ranNum]
         }
     }
 }

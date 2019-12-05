@@ -9,13 +9,11 @@ let robotSwapper = new NounSwapper(
         'general motors',
         'machine',
         'simulator',
-        'three laws of', ',robotics',
+        'three laws of robotics',
         'isaac asimov',
         'torpedo',
         'device',
         'industrial robot',
-        'josef čapek',
-        'karel čapek',
         'humanoid',
         'asimo',
         'simulate',
@@ -64,8 +62,7 @@ let robotSwapper = new NounSwapper(
         'droid',
         'handheld',
         'desktop',
-        'nintendo',
-        'ds',
+        'nintendo ds',
         'browser',
         'playstation',
         'xbox',
@@ -79,4 +76,4 @@ let robotSwapper = new NounSwapper(
     ]
 )
 
-console.log(robotSwapper.generateNoun())
+console.log(robotSwapper.themeNouns.length)

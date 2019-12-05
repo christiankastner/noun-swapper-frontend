@@ -91,7 +91,7 @@ function postPoem(event) {
     body: JSON.stringify({
       title: event.target.title.value,
       content: event.target.content.value,
-      modified_content: swapper.replaceNouns(event.target.content.value),
+      modified_content: robotSwapper.replaceNouns(event.target.content.value),
       username: event.target.username.value
     })
   })
@@ -182,7 +182,7 @@ function renderConfirmPage(json, node) {
 }
 
 function redoPoem(poem) {
-  const modifiedPoem = swapper.replaceNouns(poem.innerText);
+  const modifiedPoem = robotSwapper.replaceNouns(poem.innerText);
   const id = poem.id;
   const div = createPoemsDiv();
   fetch(`http://localhost:3000/poems/${id}`, {
