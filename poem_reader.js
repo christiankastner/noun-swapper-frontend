@@ -20,7 +20,7 @@ class PoemReader {
     if (text.length === 0) {
       return 0;
     }
-    const ranNum = Math.ceil(Math.random() * 2);
+    const ranNum = Math.ceil(Math.random() * 3);
     let cubic;
     if (sound === "true") {
       cubic = 0.04 * (text[0].split(" ").length - 3) ** 3 + 1;
@@ -48,7 +48,7 @@ class PoemReader {
     const length = rs.words().length;
     let i = 0;
     while (i < length) {
-      const ranNum = Math.ceil(Math.random() * 4);
+      const ranNum = Math.ceil(Math.random() * 4) + 1;
       lines.push(words.slice(i, i + ranNum).join(" "));
       i += ranNum;
     }
