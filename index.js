@@ -196,8 +196,7 @@ function redoPoem(poem) {
     })
   })
     .then(res => res.json())
-    .then(clearDOM())
-    .then(json => renderConfirmPage(json, div));
+    .then(json => document.querySelector(".modifiedPoem").textContent = json.modified_content);
 }
 
 function createDropDown() {
