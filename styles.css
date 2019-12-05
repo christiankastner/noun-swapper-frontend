@@ -5,3 +5,7 @@ body {
 #navButtons {
     background: indigo;
 }
+
+#headTitle {
+    display: inline;
+}
