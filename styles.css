@@ -1,16 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Solway&display=swap');
+
 body {
     background: #142d63;
-}
-
-#bongocat {
-    height: 100px;
-    width: 100px;
-
+    font-family: 'Solway', serif;
+    margin-right: 25px;
+    margin-left: 25px;
 }
 
 #titleHeader {
     display: flex;
     align-items: center;
+    margin-right: 25px;
+    margin-left: 25px;
+    font-size: 25px;
+}
+
+#homeButton {
+    margin-right: 25px;
+    margin-left: 25px;
+    border-radius: 3px;
+    font-size: 20px;
+}
+
+#createPoemButton {
+    margin-right: 25px;
+    margin-left: 25px;
+    border-radius: 3px;
+    font-size: 20px;
+}
+
+#bongocat {
+    height: 100px;
+    width: 100px;
+    margin-right: 25px;
+    margin-left: 25px;
 }
 
 #headTitle {
@@ -23,6 +46,9 @@ body {
     max-width: 200px;
     display: flex;
     justify-content: center;
+    margin-top: 25px;
+    font-size: 20px;
+    border-radius: 3px;
 }
 
 p {
@@ -30,8 +56,9 @@ p {
 }
 
 h2 {
-    color: #a828ed;
+    color: #ffff00;
     display: inline;
+    text-decoration: underline;
 }
 
 .readOptions {
@@ -53,15 +80,42 @@ h2 {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    border-radius: 3px;
+    box-shadow: 0px 5px 4px black ;
 }
 
 #pageContent {
-    margin-top: 200px;
+    margin-top: 260px;
     text-align: center;
 }
 
+#poemsDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+#originalDiv {
+    min-width: 50%;
+}
+
+#modifiedDiv {
+    min-width: 50%;
+    border-left: 2px solid black;
+}
+
+#innerPoemDiv {
+    display: flex;
+    justify-content: space-evenly;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
 .labelGroupings {
-    color: #c6eb34;
+    color: #142d63;
+    font-weight: bolder;
+    font-size: 20px;
     display: flex;
 }
 
@@ -71,4 +125,8 @@ h2 {
 
 #dropdownDiv {
     padding-right: 2em;
+}
+
+.createLabels {
+    color: #7093e0;
 }
