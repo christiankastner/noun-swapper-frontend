@@ -12,20 +12,22 @@
       <div id="noScroll">
          <div id=titleHeader>
                <h1 id="headTitle">Krazy Poems</h1>
-               <img src="images/bongo-cat-no-bg.png" width="50" height="50">
-               <div id="navButtons">
-                     <button id="homeButton" class="navButton">Home</button>
-                     <button id="createPoemButton" class="navButton">Create Poem</button>
-               </div>
+                  <button id="homeButton" class="navButton">Home</button>
+                  <button id="createPoemButton" class="navButton">Create Poem</button>
+               <img src="images/bongo-cat-no-bg.png" id="bongocat">
          </div>
          <div class="readOptions">
-            <label class="dropdownLabels">Accent: </label>
-            <div id="dropdownDiv"></div>
-            <label class="dropdownLabels">Sound effects: </label>
-            <div id="bongoSelect"><select id="bongoDropdown">
-               <option value="false">Regular</option>
-               <option value="true">&#x1F92A; Krazy Bongo-fied &#x1F918;</option>
-            </select>
+            <div class="labelGroupings">
+               <label class="dropdownLabels">Accent: </label>
+               <div id="dropdownDiv"></div>
+            </div>
+            <div class="labelGroupings">
+               <label class="dropdownLabels">Sound effects: </label>
+               <div id="bongoSelect"><select id="bongoDropdown">
+                  <option value="false">Regular</option>
+                  <option value="true">&#x1F92A; Krazy Bongo-fied &#x1F918;</option>
+               </select>
+               </div>
             </div>
          </div>
          <button id="stopSoundButton" class="navButton">&#x1F92B; Stop Sound &#x1F507;</button>
