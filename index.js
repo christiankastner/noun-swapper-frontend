@@ -47,6 +47,7 @@ function createPoem() {
    clearDOM();
    const newPoem = document.createElement('h2');
    const poemForm = document.createElement('form');
+   poemForm.id = 'poemForm';
    const submitBtn = document.createElement('button');
    const p = document.createElement('p');
    const pageContent = getPageContentDiv();
@@ -77,7 +78,7 @@ function createInput(labelText, poemForm, id, type) {
       const label = document.createElement('label');
       input.id = id;
       label.textContent = labelText;
-      label.className = "createLabels";
+      label.className = 'createLabels';
       label.appendChild(input);
       poemForm.appendChild(label);
    } else {
@@ -86,7 +87,7 @@ function createInput(labelText, poemForm, id, type) {
       const label = document.createElement('label');
       input.id = id;
       label.textContent = labelText;
-      label.className = "createLabels";
+      label.className = 'createLabels';
       label.appendChild(input);
       poemForm.appendChild(label);
    }
@@ -124,14 +125,14 @@ function appendPoem(json, node) {
    const originalDiv = document.createElement('div');
    const modifiedDiv = document.createElement('div');
    const innerPoemDiv = document.createElement('div');
-   innerPoemDiv.id = "innerPoemDiv";
+   innerPoemDiv.id = 'innerPoemDiv';
    originalDiv.id = 'originalDiv';
    modifiedDiv.id = 'modifiedDiv';
    let pOriginal = document.createElement('p');
    let pModified = document.createElement('p');
    pOriginal.textContent = json.content;
    pModified.textContent = json.modified_content;
-   pOriginal.id = "pOriginal";
+   pOriginal.id = 'pOriginal';
    pModified.id = json.id;
    pModified.className = 'modifiedPoem';
    originalDiv.appendChild(pOriginal);
@@ -162,6 +163,7 @@ function renderConfirmPage(json, node) {
    confirmHeader.innerText =
       "Here's your chance to make your poem as krazy as can be!";
    const instructionText = document.createElement('h3');
+   instructionText.style.color = 'white';
    instructionText.innerText =
       "Try click the 'redo' button below to find the kraziest articles of speech for your poem.";
    pageContent.appendChild(confirmHeader);
