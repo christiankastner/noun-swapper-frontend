@@ -1,11 +1,132 @@
+@import url('https://fonts.googleapis.com/css?family=Solway&display=swap');
+
 body {
-    background: hotpink;
+    background: #142d63;
+    font-family: 'Solway', serif;
+    margin-right: 25px;
+    margin-left: 25px;
 }
 
-#navButtons {
-    background: indigo;
+#titleHeader {
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+    margin-left: 25px;
+    font-size: 25px;
+}
+
+#homeButton {
+    margin-right: 25px;
+    margin-left: 25px;
+    border-radius: 3px;
+    font-size: 20px;
+}
+
+#createPoemButton {
+    margin-right: 25px;
+    margin-left: 25px;
+    border-radius: 3px;
+    font-size: 20px;
+}
+
+#bongocat {
+    height: 100px;
+    width: 100px;
+    margin-right: 25px;
+    margin-left: 25px;
 }
 
 #headTitle {
     display: inline;
+    color: #142d63;
+}
+
+#stopSoundButton {
+    margin-top: 10px;
+    max-width: 200px;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    font-size: 20px;
+    border-radius: 3px;
+}
+
+p {
+    color: white;
+}
+
+h2 {
+    color: #ffff00;
+    display: inline;
+    text-decoration: underline;
+}
+
+.readOptions {
+    display: flex;
+}
+
+#noScroll {
+    position: fixed;
+    background: #7093e0;
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 3px;
+    box-shadow: 0px 5px 4px black ;
+}
+
+#pageContent {
+    margin-top: 260px;
+    text-align: center;
+}
+
+#poemsDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+#originalDiv {
+    min-width: 50%;
+}
+
+#modifiedDiv {
+    min-width: 50%;
+    border-left: 2px solid black;
+}
+
+#innerPoemDiv {
+    display: flex;
+    justify-content: space-evenly;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.labelGroupings {
+    color: #142d63;
+    font-weight: bolder;
+    font-size: 20px;
+    display: flex;
+}
+
+.dropdownLabels {
+    padding-right: 5px;
+}
+
+#dropdownDiv {
+    padding-right: 2em;
+}
+
+.createLabels {
+    color: #7093e0;
 }

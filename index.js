@@ -56,13 +56,13 @@ function createPoem() {
       'Select all articles of speech that you would like to replace: ';
    pageContent.appendChild(newPoem);
    poemForm.appendChild(p);
-   createInput('Adjectives', poemForm, 'jj', 'checkbox');
-   createInput('Nouns', poemForm, 'nn', 'checkbox');
-   createInput('Verbs', poemForm, 'vb', 'checkbox');
-   createInput('Adverbs', poemForm, 'rb', 'checkbox');
-   createInput('Title', poemForm, 'title', 'text');
-   createInput('Content', poemForm, 'content', 'textarea');
-   createInput('Username', poemForm, 'username', 'text');
+   createInput('Adjectives:', poemForm, 'jj', 'checkbox');
+   createInput('Nouns:', poemForm, 'nn', 'checkbox');
+   createInput('Verbs:', poemForm, 'vb', 'checkbox');
+   createInput('Adverbs:', poemForm, 'rb', 'checkbox');
+   createInput('Title: ', poemForm, 'title', 'text');
+   createInput('Content: ', poemForm, 'content', 'textarea');
+   createInput('Username: ', poemForm, 'username', 'text');
    poemForm.appendChild(submitBtn);
    pageContent.appendChild(poemForm);
    poemForm.addEventListener('submit', event => {
@@ -77,6 +77,7 @@ function createInput(labelText, poemForm, id, type) {
       const label = document.createElement('label');
       input.id = id;
       label.textContent = labelText;
+      label.className = "createLabels";
       label.appendChild(input);
       poemForm.appendChild(label);
    } else {
@@ -85,6 +86,7 @@ function createInput(labelText, poemForm, id, type) {
       const label = document.createElement('label');
       input.id = id;
       label.textContent = labelText;
+      label.className = "createLabels";
       label.appendChild(input);
       poemForm.appendChild(label);
    }
@@ -117,29 +119,31 @@ function postPoem(event) {
 function appendPoem(json, node) {
    let pageContent = getPageContentDiv();
    pageContent.appendChild(node);
-   const poemTitle = document.createElement('h2');
-   const username = document.createElement('p');
-   username.textContent = `By ${json.user.username}`;
-   poemTitle.textContent = json.title;
+   const poemTitleAuthor = document.createElement('h2');
+   poemTitleAuthor.textContent = `${json.title} ~ by ${json.user.username}`;
    const originalDiv = document.createElement('div');
    const modifiedDiv = document.createElement('div');
-   modifiedDiv.id = 'modPoemDiv';
+   const innerPoemDiv = document.createElement('div');
+   innerPoemDiv.id = "innerPoemDiv";
+   originalDiv.id = 'originalDiv';
+   modifiedDiv.id = 'modifiedDiv';
    let pOriginal = document.createElement('p');
    let pModified = document.createElement('p');
    pOriginal.textContent = json.content;
    pModified.textContent = json.modified_content;
-   pModified.id = json.id;
+   pOriginal.id = "pOriginal";
+   pModified.id = "pModified";
    pModified.className = 'modifiedPoem';
    originalDiv.appendChild(pOriginal);
    modifiedDiv.appendChild(pModified);
    const readButton1 = createReadButton();
    const readButton2 = createReadButton();
-   originalDiv.append(readButton1);
-   modifiedDiv.append(readButton2);
-   node.appendChild(poemTitle);
-   node.appendChild(username);
-   node.appendChild(originalDiv);
-   node.appendChild(modifiedDiv);
+   node.appendChild(poemTitleAuthor);
+   node.appendChild(innerPoemDiv);
+   originalDiv.appendChild(readButton1);
+   modifiedDiv.appendChild(readButton2);
+   innerPoemDiv.appendChild(originalDiv);
+   innerPoemDiv.appendChild(modifiedDiv);
 }
 
 function createReadButton() {
