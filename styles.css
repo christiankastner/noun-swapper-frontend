@@ -1,132 +1,167 @@
 @import url('https://fonts.googleapis.com/css?family=Solway&display=swap');
 
 body {
-    background: #142d63;
-    font-family: 'Solway', serif;
-    margin-right: 25px;
-    margin-left: 25px;
+   background: #142d63;
+   font-family: 'Solway', serif;
+   margin-right: 25px;
+   margin-left: 25px;
 }
 
 #titleHeader {
-    display: flex;
-    align-items: center;
-    margin-right: 25px;
-    margin-left: 25px;
-    font-size: 25px;
+   display: flex;
+   align-items: center;
+   margin-right: 25px;
+   margin-left: 25px;
+   font-size: 25px;
 }
 
 #homeButton {
-    margin-right: 25px;
-    margin-left: 25px;
-    border-radius: 3px;
-    font-size: 20px;
+   margin-right: 25px;
+   margin-left: 25px;
+   border-radius: 3px;
+   font-size: 20px;
 }
 
 #createPoemButton {
-    margin-right: 25px;
-    margin-left: 25px;
-    border-radius: 3px;
-    font-size: 20px;
+   margin-right: 25px;
+   margin-left: 25px;
+   border-radius: 3px;
+   font-size: 20px;
 }
 
 #bongocat {
-    height: 100px;
-    width: 100px;
-    margin-right: 25px;
-    margin-left: 25px;
+   height: 100px;
+   width: 100px;
+   margin-right: 25px;
+   margin-left: 25px;
 }
 
 #headTitle {
-    display: inline;
-    color: #142d63;
+   display: inline;
+   color: #142d63;
 }
 
 #stopSoundButton {
-    margin-top: 10px;
-    max-width: 200px;
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
-    font-size: 20px;
-    border-radius: 3px;
+   margin-top: 10px;
+   max-width: 200px;
+   display: flex;
+   justify-content: center;
+   margin-top: 25px;
+   font-size: 20px;
+   border-radius: 3px;
 }
 
 p {
-    color: white;
+   color: white;
 }
 
 h2 {
-    color: #ffff00;
-    display: inline;
-    text-decoration: underline;
+   color: #ffff00;
+   display: inline;
+   text-decoration: underline;
 }
 
 .readOptions {
-    display: flex;
+   display: flex;
 }
 
 #noScroll {
-    position: fixed;
-    background: #7093e0;
-    /* Set up proportionate scaling */
-    width: 100%;
-    height: auto;
-    /* Set up positioning */
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 3px;
-    box-shadow: 0px 5px 4px black ;
+   position: fixed;
+   background: #7093e0;
+
+   /* Set up proportionate scaling */
+   width: 100%;
+   height: auto;
+   /* Set up positioning */
+   position: fixed;
+   top: 0;
+   left: 0;
+   padding: 20px;
+   padding-top: 0px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-around;
+   align-items: center;
+   border-radius: 3px;
+   box-shadow: 0px 5px 4px black;
+}
+
+#noScroll button {
+   color: #142d63;
+   background: white;
+   border: none;
 }
 
 #pageContent {
-    margin-top: 260px;
-    text-align: center;
+   margin-top: 260px;
+   text-align: center;
 }
 
 #poemsDiv {
-    display: flex;
-    flex-direction: column;
+   display: flex;
+   flex-direction: column;
 }
 
 #originalDiv {
-    min-width: 50%;
+   min-width: 50%;
 }
 
 #modifiedDiv {
-    min-width: 50%;
-    border-left: 2px solid black;
+   min-width: 50%;
+   border-left: 2px solid black;
 }
 
 #innerPoemDiv {
-    display: flex;
-    justify-content: space-evenly;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    padding-bottom: 10px;
-    padding-top: 10px;
+   display: flex;
+   justify-content: space-evenly;
+   border-top: 2px solid black;
+   border-bottom: 2px solid black;
+   padding-bottom: 10px;
+   padding-top: 10px;
 }
 
 .labelGroupings {
-    color: #142d63;
-    font-weight: bolder;
-    font-size: 20px;
-    display: flex;
+   color: #142d63;
+   font-weight: bolder;
+   font-size: 20px;
+   display: flex;
 }
 
 .dropdownLabels {
-    padding-right: 5px;
+   padding-right: 5px;
 }
 
 #dropdownDiv {
-    padding-right: 2em;
+   padding-right: 2em;
 }
 
 .createLabels {
-    color: #7093e0;
+   color: #7093e0;
+   margin-top: 5px;
+}
+
+#poemForm {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+#poemForm button {
+   margin: 5px;
+}
+
+#innerPoemDiv button {
+   border: none;
+   background: #7093e0;
+   color: white;
+   padding: 5px;
+   margin: 5px;
+   border-radius: 3px;
+   font-weight: bold;
+   font-size: 15px;
+}
+
+p {
+   font-size: 20px;
 }
