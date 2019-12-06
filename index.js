@@ -132,7 +132,7 @@ function appendPoem(json, node) {
    pOriginal.textContent = json.content;
    pModified.textContent = json.modified_content;
    pOriginal.id = "pOriginal";
-   pModified.id = "pModified";
+   pModified.id = json.id;
    pModified.className = 'modifiedPoem';
    originalDiv.appendChild(pOriginal);
    modifiedDiv.appendChild(pModified);
@@ -163,7 +163,7 @@ function renderConfirmPage(json, node) {
       "Here's your chance to make your poem as krazy as can be!";
    const instructionText = document.createElement('h3');
    instructionText.innerText =
-      "Try click the 'redo' button below to find the kraziest nouns for your poem.";
+      "Try click the 'redo' button below to find the kraziest articles of speech for your poem.";
    pageContent.appendChild(confirmHeader);
    pageContent.appendChild(instructionText);
    createInput('Adjectives', pageContent, 'jj', 'checkbox');
@@ -171,7 +171,7 @@ function renderConfirmPage(json, node) {
    createInput('Verbs', pageContent, 'vb', 'checkbox');
    createInput('Adverbs', pageContent, 'rb', 'checkbox');
    appendPoem(json, node);
-   const modifiedPoemDiv = document.getElementById('modPoemDiv');
+   const modifiedPoemDiv = document.getElementById('modifiedDiv');
    const redoButton = document.createElement('button');
    modifiedPoemDiv.appendChild(redoButton);
    const modifiedPoem = document.querySelector('.modifiedPoem');
