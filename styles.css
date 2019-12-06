@@ -102,6 +102,17 @@ h2 {
    flex-direction: column;
 }
 
+#saveButton {
+   margin: 5px;
+   border: none;
+   background: #7093e0;
+   color: white;
+   padding: 5px;
+   border-radius: 3px;
+   font-weight: bold;
+   font-size: 15px;
+}
+
 #originalDiv {
    min-width: 50%;
 }
@@ -149,6 +160,13 @@ h2 {
 
 #poemForm button {
    margin: 5px;
+   border: none;
+   background: #7093e0;
+   color: white;
+   padding: 5px;
+   border-radius: 3px;
+   font-weight: bold;
+   font-size: 15px;
 }
 
 #innerPoemDiv button {
