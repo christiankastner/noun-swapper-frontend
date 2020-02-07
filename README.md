@@ -1,8 +1,8 @@
-# Krazy-Poems-Frontend
+# Beat-Poems-Frontend
 
 Flatiron School Module 3 Project Frontend by [Matt Gahrns](https://github.com/mattgahrns/), [Christian Kastner](https://github.com/ckastner12), [Jen Williams](https://github.com/Taljjaa)
 
-Krazy Poems is a program designed to liven up poems or text by identifying nouns, adjectives, verbs, and adverbs in a sentence and replacing them with other random words. You can also have your new krazy poem read aloud by a diverse set of different voices and even add music to the reading!
+Beat Poems is a program designed to liven up poems or text by identifying nouns, adjectives, verbs, and adverbs in a sentence and replacing them with other random words. You can also have your new beat poem read aloud by a diverse set of different voices and even add music to the reading!
 
 ## Installation
 
